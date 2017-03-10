@@ -11,7 +11,7 @@ package tubes1;
  */
 public class Kelas {
     
-   private  String namaKelas;
+    private  String namaKelas;
     private Matakuliah matakuliah;
     private Mahasiswa[] mahasiswa;
     private Tugas[] tugas;
@@ -34,8 +34,8 @@ public class Kelas {
         
     }
     
-    public Matakuliah getMatakuliah(){
-        return getMatakuliah();
+    public String getMatakuliah(Matakuliah m){
+        return m.getNamaMK()+'('+m.getKodeMK()+')';
     }
     
     public void addMahasiswa(Mahasiswa M) {
