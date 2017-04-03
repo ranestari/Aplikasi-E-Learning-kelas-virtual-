@@ -12,13 +12,19 @@ package tubes1;
 public class Mahasiswa extends Orang {
     
     private String nim;
+
+    
+    @Override
+    public String toStringJenis() {
+        return "Mahasiswa" ;
+    }
     
     public Mahasiswa(){}
     
-    public Mahasiswa(String nim, String nama, String alamat, String tanggalLahir){
-        super(nama,alamat,tanggalLahir);
+    public Mahasiswa(String nim) {
         this.nim=nim;
     }
+    
 
     public String getNim() {
         return nim;
@@ -27,6 +33,8 @@ public class Mahasiswa extends Orang {
     public void setNim(String nim) {
         this.nim = nim;
     }
+
+    
     
     
 }

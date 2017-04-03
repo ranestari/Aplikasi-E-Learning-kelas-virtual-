@@ -12,15 +12,13 @@ package tubes1;
 public class Tugas {
     
     private String namaTugas;
-    private String deskripsi;
-    private String batasWaktu;
+   
     
     public Tugas(){}
     
-    public Tugas(String namaTugas,String deskripsi, String batasWaktu){
+    public Tugas(String namaTugas){
         this.namaTugas=namaTugas;
-        this.deskripsi=deskripsi;
-        this.batasWaktu=batasWaktu;
+        
     }
 
     public String getNamaTugas() {
@@ -29,24 +27,5 @@ public class Tugas {
 
     public void setNamaTugas(String namaTugas) {
         this.namaTugas = namaTugas;
-    }
-
-    public String getDeskripsi() {
-        return deskripsi;
-    }
-
-    public void setDeskripsi(String deskripsi) {
-        this.deskripsi = deskripsi;
-    }
-
-    public String getBatasWaktu() {
-        return batasWaktu;
-    }
-
-    public void setBatasWaktu(String batasWaktu) {
-        this.batasWaktu = batasWaktu;
-    }
-    
-    
-    
+    }   
 }

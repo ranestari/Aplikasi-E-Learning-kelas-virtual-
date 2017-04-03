@@ -9,33 +9,48 @@ package tubes1;
  *
  * @author Ranestari Sastriani
  */
-public class Orang {
+public abstract class Orang {
     
-    protected String nama;
-    protected String alamat;
-    protected String tanggalLahir;
+   
+    private String nama;
+    private String email;
+    private String tanggalLahir;
     
     public Orang(){}
     
-    public Orang(String nama, String alamat, String tanggalLahir){
+    public Orang(String nama, String email, String tanggalLahir){
         this.nama=nama;
-        this.alamat=alamat;
+        this.email=email;
         this.tanggalLahir=tanggalLahir;
     }
+
+    
 
     public void setNama(String nama) {
         this.nama = nama;
     }
 
-    public void setAlamat(String alamat) {
-        this.alamat = alamat;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setTanggalLahir(String tanggalLahir) {
         this.tanggalLahir = tanggalLahir;
     }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getTanggalLahir() {
+        return tanggalLahir;
+    }
     
     
-    
+    public abstract String toStringJenis();
     
 }

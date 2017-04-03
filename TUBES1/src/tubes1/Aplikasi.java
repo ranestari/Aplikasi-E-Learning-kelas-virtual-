@@ -5,22 +5,27 @@
  */
 package tubes1;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Ranestari Sastriani
  */
 public class Aplikasi {
     
-    private Dosen[] daftarDosen;
-    private Mahasiswa[] daftarMahasiswa;
-    private Matakuliah[] daftarMatakuliah;
+    private List<Mahasiswa> daftarMahasiswa= new ArrayList<>();
+    private List<Dosen> daftarDosen = new ArrayList<>();
+    private List<Matakuliah> daftarMatakuliah = new ArrayList<>();
     
     public void addDosen(Dosen d){}
     public void addMahasiswa(Mahasiswa m){}
-    //public Mahasiswa getMahasiswa(String nim){
-    //}
-    public void deleteMahasiswa(String nim){}
     public void addMatakuliah(Matakuliah m){}
+    //public Dosen getDosen(String nip){}
+   // public Mahasiswa getMahasiswa(String nim){}
+   // public Matakuliah getMatakuliah(String kodeMK){}
+    public void deleteMahasiswa(String nim){}
+    
     
     public void menuSatu(){}
     public void menuDua(){}

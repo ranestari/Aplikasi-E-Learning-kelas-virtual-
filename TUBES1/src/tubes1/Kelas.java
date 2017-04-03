@@ -17,9 +17,12 @@ public class Kelas {
     private Tugas[] tugas;
     private int numOfTugas;
     private int numOfMahasiswa;
+    private int maxMahasiswa;
+    private int maxTugas;
     
     public Kelas(String namaKelas){
         this.namaKelas=namaKelas;
+        
     }
 
     public String getNamaKelas() {
@@ -31,7 +34,7 @@ public class Kelas {
     }
     
     public void setMataKuliah (Matakuliah m){
-        
+        matakuliah=m;
     }
     
     public String getMatakuliah(Matakuliah m){
@@ -39,9 +42,15 @@ public class Kelas {
     }
     
     public void addMahasiswa(Mahasiswa M) {
+        if(numOfMahasiswa<maxMahasiswa){
+            mahasiswa[numOfMahasiswa++]=M;
+        }
     }
     
-    public void createTugas(String Tugas){
+    public void createTugas(String namaTugas){
+        if(numOfTugas<maxTugas){
+            tugas[numOfTugas]=new Tugas(namaTugas);
+        }
     }
     
     public Mahasiswa getMahasiswa(int n){
