@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tubes1;
+package Model;
 
 /**
  *
@@ -27,5 +27,10 @@ public class Tugas {
 
     public void setNamaTugas(String namaTugas) {
         this.namaTugas = namaTugas;
-    }   
+    }  
+    
+    @Override
+    public String toString(){
+        return namaTugas;
+    }
 }

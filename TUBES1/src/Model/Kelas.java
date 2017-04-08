@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tubes1;
+package Model;
+
+import java.util.*;
 
 /**
  *
@@ -13,15 +15,14 @@ public class Kelas {
     
     private  String namaKelas;
     private Matakuliah matakuliah;
-    private Mahasiswa[] mahasiswa;
-    private Tugas[] tugas;
-    private int numOfTugas;
-    private int numOfMahasiswa;
-    private int maxMahasiswa;
-    private int maxTugas;
+    ArrayList<Mahasiswa> daftarMahasiswa;
+    ArrayList<Tugas> daftarTugas;
+    
     
     public Kelas(String namaKelas){
         this.namaKelas=namaKelas;
+        daftarMahasiswa=new ArrayList();
+        daftarTugas=new ArrayList();
         
     }
 
@@ -38,37 +39,24 @@ public class Kelas {
     }
     
     public String getMatakuliah(Matakuliah m){
-        return m.getNamaMK()+'('+m.getKodeMK()+')';
+        return m.getNamaMK()+"("+m.getKodeMK()+")";
     }
     
     public void addMahasiswa(Mahasiswa M) {
-        if(numOfMahasiswa<maxMahasiswa){
-            mahasiswa[numOfMahasiswa++]=M;
-        }
+        daftarMahasiswa.add(M);
     }
     
     public void createTugas(String namaTugas){
-        if(numOfTugas<maxTugas){
-            tugas[numOfTugas]=new Tugas(namaTugas);
-        }
+        daftarTugas.add(new Tugas(namaTugas));
+    }  
+    
+     public Tugas getTugas(int i){
+        return daftarTugas.get(i);
     }
     
-    public Mahasiswa getMahasiswa(int n){
-        return mahasiswa[n];
+    @Override
+    public String toString(){
+        return "Kelas "+namaKelas;
     }
-    
-    public Tugas getTugas(int n){
-        return tugas[n];
-    }
-
-    public int getNumOfTugas() {
-        return numOfTugas;
-    }
-
-    public int getNumOfMahasiswa() {
-        return numOfMahasiswa;
-    }
-    
-    
     
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tubes1;
+package Model;
 
 /**
  *
@@ -16,7 +16,9 @@ public abstract class Orang {
     private String email;
     private String tanggalLahir;
     
-    public Orang(){}
+    public Orang(String nama){
+    this.nama=nama;
+    }
     
     public Orang(String nama, String email, String tanggalLahir){
         this.nama=nama;
@@ -51,6 +53,12 @@ public abstract class Orang {
     }
     
     
-    public abstract String toStringJenis();
+    @Override
+    public  String toString(){
+        return
+                  "\nnama: " + nama+ ", "
+                + "\nemail: " + email + ", "
+                + "\ntanggal Lahir: " + tanggalLahir+ ", ";
+    }
     
 }
