@@ -12,12 +12,15 @@ package Model;
 public class Tugas {
     
     private String namaTugas;
+    private static int count=1;
+    private final String indeks;
    
     
-    public Tugas(){}
+    
     
     public Tugas(String namaTugas){
         this.namaTugas=namaTugas;
+        indeks="Tugas-"+(count++);
         
     }
 

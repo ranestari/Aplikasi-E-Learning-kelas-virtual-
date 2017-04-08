@@ -5,6 +5,8 @@
  */
 package Model;
 
+import java.util.Date;
+
 /**
  *
  * @author Ranestari Sastriani
@@ -14,13 +16,13 @@ public abstract class Orang {
    
     private String nama;
     private String email;
-    private String tanggalLahir;
+    private Date tanggalLahir;
     
     public Orang(String nama){
     this.nama=nama;
     }
     
-    public Orang(String nama, String email, String tanggalLahir){
+    public Orang(String nama, String email, Date tanggalLahir){
         this.nama=nama;
         this.email=email;
         this.tanggalLahir=tanggalLahir;
@@ -36,7 +38,7 @@ public abstract class Orang {
         this.email = email;
     }
 
-    public void setTanggalLahir(String tanggalLahir) {
+    public void setTanggalLahir(Date tanggalLahir) {
         this.tanggalLahir = tanggalLahir;
     }
 
@@ -48,7 +50,7 @@ public abstract class Orang {
         return email;
     }
 
-    public String getTanggalLahir() {
+    public Date getTanggalLahir() {
         return tanggalLahir;
     }
     
@@ -56,9 +58,9 @@ public abstract class Orang {
     @Override
     public  String toString(){
         return
-                  "\nnama: " + nama+ ", "
-                + "\nemail: " + email + ", "
-                + "\ntanggal Lahir: " + tanggalLahir+ ", ";
+                  "\nnama: " + nama 
+                + "\nemail: " + email 
+                + "\ntanggal Lahir: " + tanggalLahir ;
     }
     
 }

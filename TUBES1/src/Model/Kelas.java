@@ -13,6 +13,8 @@ import java.util.*;
  */
 public class Kelas {
     
+    private static int count=1;
+    private final String indeks;
     private  String namaKelas;
     private Matakuliah matakuliah;
     ArrayList<Mahasiswa> daftarMahasiswa;
@@ -23,6 +25,7 @@ public class Kelas {
         this.namaKelas=namaKelas;
         daftarMahasiswa=new ArrayList();
         daftarTugas=new ArrayList();
+        indeks="Kelas-"+(count++);
         
     }
 
