@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tubes1;
+package Model;
 
 /**
  *
@@ -37,7 +37,10 @@ public class Matakuliah {
         this.kodeMK = kodeMK;
     }
     
-    
+    @Override
+    public String toString(){
+        return "Mata Kuliah "+namaMK+"("+kodeMK+")";
+    }
     
     
 }
