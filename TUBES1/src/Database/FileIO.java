@@ -5,6 +5,7 @@
  */
 package Database;
 
+import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -17,27 +18,20 @@ import java.io.ObjectOutputStream;
  * @author Ranestari Sastriani
  */
 public class FileIO {
-    public void saveObject(Object o, String file)
-        throws FileNotFoundException, IOException{
-       FileOutputStream fout= new FileOutputStream(file);
-       ObjectOutputStream oout= new ObjectOutputStream(fout);
-       oout.defaultWriteObject();
-       oout.flush();  
+     public void saveObject(Object o, String file)
+            throws FileNotFoundException, IOException {
+        FileOutputStream fout = new FileOutputStream(file);
+        ObjectOutputStream oout = new ObjectOutputStream(fout);
+        oout.writeObject(o);
+        oout.flush();
     }
-    
+
     public Object getObject(String file)
             throws FileNotFoundException, IOException,
-            ClassNotFoundException,EOFEXception{
+            ClassNotFoundException, EOFException {
         ObjectInputStream ois
                 = new ObjectInputStream(new FileInputStream(file));
-        
         return ois.readObject();
-    }
-
-    private static class EOFEXception extends Exception {
-
-        public EOFEXception() {
-        }
     }
     }
     

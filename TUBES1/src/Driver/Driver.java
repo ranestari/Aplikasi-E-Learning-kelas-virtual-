@@ -5,7 +5,9 @@
  */
 package Driver;
 
+import Model.Aplikasi;
 import Model.Mahasiswa;
+import ViewConsole.Console;
 import java.util.*;
 
 /**
@@ -14,14 +16,9 @@ import java.util.*;
  */
 public class Driver {
     public static void main(String[] args) {
-        ArrayList<Mahasiswa> m = new ArrayList();
-        m.add(new Mahasiswa("tono","1301154553"));
-        m.add(new Mahasiswa("budi"));
-        m.add(new Mahasiswa("anes"));
-        m.add(new Mahasiswa("fazri"));
-        
-        
-        System.out.println(m);
+        Aplikasi app = null;
+        Console view = new Console(app);
+        view.mainMenu();
         
     }
     

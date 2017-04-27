@@ -22,7 +22,7 @@ public class Dosen extends Orang{
     
   
     
-    public Dosen(String nama,String email, Date  tanggalLahir, String nip){
+    public Dosen(String nama,String email, String  tanggalLahir, String nip){
         super(nama,email,tanggalLahir);
         this.nip=nip;
         indeks="Dsn-"+(count++);

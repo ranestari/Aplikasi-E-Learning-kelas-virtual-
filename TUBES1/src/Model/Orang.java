@@ -16,13 +16,13 @@ public abstract class Orang {
    
     private String nama;
     private String email;
-    private Date tanggalLahir;
+    private String tanggalLahir;
     
     public Orang(String nama){
     this.nama=nama;
     }
     
-    public Orang(String nama, String email, Date tanggalLahir){
+    public Orang(String nama, String email, String tanggalLahir){
         this.nama=nama;
         this.email=email;
         this.tanggalLahir=tanggalLahir;
@@ -38,7 +38,7 @@ public abstract class Orang {
         this.email = email;
     }
 
-    public void setTanggalLahir(Date tanggalLahir) {
+    public void setTanggalLahir(String tanggalLahir) {
         this.tanggalLahir = tanggalLahir;
     }
 
@@ -50,7 +50,7 @@ public abstract class Orang {
         return email;
     }
 
-    public Date getTanggalLahir() {
+    public String getTanggalLahir() {
         return tanggalLahir;
     }
     

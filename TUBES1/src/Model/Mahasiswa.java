@@ -20,7 +20,7 @@ public class Mahasiswa extends Orang {
 
   
     
-    public Mahasiswa(String nama,String email, Date tanggalLahir, String nim){
+    public Mahasiswa(String nama,String email, String tanggalLahir, String nim){
         super(nama,email,tanggalLahir);
         this.nim=nim;
         indeks="mhs-"+(count++);

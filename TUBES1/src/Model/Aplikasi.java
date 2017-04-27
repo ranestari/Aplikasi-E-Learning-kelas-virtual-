@@ -11,6 +11,11 @@ import java.util.List;
 import Model.Dosen;
 import Model.Mahasiswa;
 import Model.Matakuliah;
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -30,17 +35,20 @@ public class Aplikasi {
         daftarMatakuliah=new ArrayList();
     }
     // DOSEN
-    public void addDosen(String nama,String email,Date tanggalLahir, String nip){
+    public void addDosen(String nama,String email,String tanggalLahir, String nip){
         daftarDosen.add(new Dosen(nama,email,tanggalLahir,nip));
     }
     
      public Dosen getDosenByNip(String nip){
-        return daftarDosen.stream()
-                .filter(e -> e.getNip().equals(nip))
-                .findFirst().orElse(null);
+        for (Dosen d : daftarDosen) {
+            if (d.getNip().equals(nip)) {
+                return d;
+            }
+        }
+        return null;
     }
      
-     public Dosen getDosenByIndeks(String indeks){
+     public Dosen getDosenByIndeks(int indeks){
         return daftarDosen.stream()
                 .filter(e -> e.getIndeks().equals(indeks))
                 .findFirst().orElse(null);
@@ -54,7 +62,7 @@ public class Aplikasi {
             return daftarDosen.indexOf(getDosenByNip(nip));
     }
    //MAHASISWA
-    public void addMahasiswa(String nama,String email, Date tanggalLahir, String nim){
+    public void addMahasiswa(String nama,String email, String tanggalLahir, String nim){
         daftarMahasiswa.add(new Mahasiswa(nama,email,tanggalLahir,nim));
     }
     
@@ -94,6 +102,7 @@ public class Aplikasi {
       d.createKelas(namaKelas);
     }
     
+    
     public void createTugas(Kelas k, String namaTugas){
         k.createTugas(namaTugas);
     }
@@ -116,16 +125,50 @@ public class Aplikasi {
           return s;  
     }
     
+    public String[] getDaftarKelas(){
+        Dosen d = null;
+        String s[]=new String[d.daftarKelas.size()];
+          for (int i = 1; i < d.daftarKelas.size(); i++) { 
+              s[i]=d.daftarKelas.get(i).getNamaKelas();
+          } 
+          return s;  
+    }
+    
     
     
    
   
     
-    
-    public void menuSatu(){}
-    public void menuDua(){}
-    public void menuTiga(){}
-    public void mainMenu(){}
+  // for console view
+    public void viewListConsole(String[] list) {
+        Arrays.stream(list).forEach(System.out::println);
+    }
+
+    public void loadDosen() throws FileNotFoundException, IOException {
+        try {
+            daftarDosen = (ArrayList<Dosen>) save.getObject("filename.dat");
+        } catch (FileNotFoundException ex) {
+            File f = new File("filename.dat");
+            f.createNewFile();
+        } catch (EOFException ex) {
+            daftarDosen = new ArrayList<>();
+        } catch (IOException | ClassNotFoundException ex) {
+            throw new IOException("error " + ex.getMessage());
+        }
+    }
+
+    public void saveEmployee() throws FileNotFoundException, IOException {
+        try {
+            save.saveObject(daftarDosen, "filename.dat");
+        } catch (FileNotFoundException ex) {
+            throw new FileNotFoundException("file not found");
+        } catch (IOException ex) {
+            throw new IOException("error " + ex.getMessage());
+        }
+    }
+
+
+   
      
     
     
