@@ -11,19 +11,14 @@ package Model;
  */
 public class Tugas {
     
-    private String namaTugas;
-    private static int count=1;
-    private final String indeks;
-   
-    
-    
-    
-    public Tugas(String namaTugas){
-        this.namaTugas=namaTugas;
-        indeks="Tugas-"+(count++);
-        
-    }
+     private String namaTugas;
+    private String deskripsi;
 
+    public Tugas(String namaTugas, String deskripsi) {
+        this.namaTugas = namaTugas;
+        this.deskripsi = deskripsi;
+    }
+   
     public String getNamaTugas() {
         return namaTugas;
     }
@@ -31,9 +26,12 @@ public class Tugas {
     public void setNamaTugas(String namaTugas) {
         this.namaTugas = namaTugas;
     }  
-    
-    @Override
-    public String toString(){
-        return namaTugas;
+
+    public String getDeskripsi() {
+        return deskripsi;
     }
+
+    public void setDeskripsi(String deskripsi) {
+        this.deskripsi = deskripsi;
+}
 }
