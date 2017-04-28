@@ -20,6 +20,9 @@ public class Kelas {
     ArrayList<Mahasiswa> daftarMahasiswa;
     ArrayList<Tugas> daftarTugas;
     
+    private Mahasiswa[] anggota = new Mahasiswa [25];
+    p
+    
     
     public Kelas(String namaKelas){
         this.namaKelas=namaKelas;
