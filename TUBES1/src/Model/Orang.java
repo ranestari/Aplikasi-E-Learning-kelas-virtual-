@@ -5,6 +5,8 @@
  */
 package Model;
 
+import java.util.Date;
+
 /**
  *
  * @author Ranestari Sastriani
@@ -56,9 +58,9 @@ public abstract class Orang {
     @Override
     public  String toString(){
         return
-                  "\nnama: " + nama+ ", "
-                + "\nemail: " + email + ", "
-                + "\ntanggal Lahir: " + tanggalLahir+ ", ";
+                  "\nnama: " + nama 
+                + "\nemail: " + email 
+                + "\ntanggal Lahir: " + tanggalLahir ;
     }
     
 }

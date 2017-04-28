@@ -5,16 +5,17 @@
  */
 package Model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Ranestari Sastriani
  */
-public class Matakuliah {
+public class Matakuliah implements Serializable{
     
     private String namaMK;
     private String kodeMK;
     
-    public Matakuliah(){}
     
     public Matakuliah(String namaMK, String kodeMK){
         this.namaMK=namaMK;

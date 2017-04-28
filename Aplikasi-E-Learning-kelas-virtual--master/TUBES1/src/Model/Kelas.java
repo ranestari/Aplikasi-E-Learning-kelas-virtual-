@@ -20,9 +20,10 @@ public class Kelas {
     private int jumTugas = 0;
     private Matakuliah Matakuliah;
     
-    public Kelas (String namaKelas, int maxjumTugas) {
+
+     public Kelas(String namaKelas, int maxjumTugas) {
         this.namaKelas = namaKelas;
-        tugas = new Tugas[maxjumTugas];
+        tugas=new Tugas[maxjumTugas];
     }
     
     
@@ -30,7 +31,7 @@ public class Kelas {
         this.Matakuliah=m;
     }
     
-    public String getMatakuliah(Matakuliah m){
+    public Matakuliah getMatakuliah(Matakuliah m){
         return Matakuliah;
     }
     

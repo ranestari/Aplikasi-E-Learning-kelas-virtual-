@@ -13,6 +13,8 @@ import java.util.*;
  */
 public class Kelas {
     
+    private static int count=1;
+    private final String indeks;
     private  String namaKelas;
     private Matakuliah matakuliah;
     ArrayList<Mahasiswa> daftarMahasiswa;
@@ -23,6 +25,7 @@ public class Kelas {
         this.namaKelas=namaKelas;
         daftarMahasiswa=new ArrayList();
         daftarTugas=new ArrayList();
+        indeks="Kelas-"+(count++);
         
     }
 
@@ -35,11 +38,11 @@ public class Kelas {
     }
     
     public void setMataKuliah (Matakuliah m){
-        matakuliah=m;
+        this.matakuliah=m;
     }
     
-    public String getMatakuliah(Matakuliah m){
-        return m.getNamaMK()+"("+m.getKodeMK()+")";
+    public Matakuliah getMatakuliah(){
+        return matakuliah;
     }
     
     public void addMahasiswa(Mahasiswa M) {
@@ -56,7 +59,9 @@ public class Kelas {
     
     @Override
     public String toString(){
-        return "Kelas "+namaKelas;
+        return "Kelas :"+namaKelas+"\n"
+                +"Mata Kuliah :"+getMatakuliah().getNamaMK()+"\n"
+                +"Kode Mata Kuliah: "+getMatakuliah().getKodeMK();
     }
     
 }

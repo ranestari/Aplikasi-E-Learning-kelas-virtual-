@@ -5,45 +5,28 @@
  */
 package Model;
 
+import java.util.Date;
+
 /**
  *
  * @author Ranestari Sastriani
  */
 public class Mahasiswa extends Orang {
     
-    private String nim;
-
     
- 
-    
-    public Mahasiswa(String nama,String email, String tanggalLahir, String nim){
-        super(nama,email,tanggalLahir);
-        this.nim=nim;
+    public Mahasiswa(String nama, String email, long nim){
+        super(nama,email,nim);
     }
+       
     
-    public Mahasiswa (String nama){
-        super(nama);
-    }
-    
-    public Mahasiswa(String nama,String nim) {
-        super(nama);
-        this.nim=nim;
-
-    }
-    
-
-    public String getNim() {
-        return nim;
-    }
-
-    public void setNim(String nim) {
-        this.nim = nim;
+    public void display(){
+        System.out.println("Nama Mahasiswa: "+super.getNama());
+        System.out.println("Nim Mahasiswa:"+super.getId());
     }
     
        @Override
     public String toString() {
-        return super.toString()+","
-                +"\nnim: "+nim;
+        return  "Nama : " + super.getNama();
     }
 
     
