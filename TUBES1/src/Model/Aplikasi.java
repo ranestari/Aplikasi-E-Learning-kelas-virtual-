@@ -26,158 +26,170 @@ import java.util.stream.Collectors;
 public class Aplikasi {
     
     private FileIO save;
-    private List<Mahasiswa> daftarMahasiswa= new ArrayList<>();
-    private List<Dosen> daftarDosen = new ArrayList<>();
-    private List<Matakuliah> daftarMatakuliah = new ArrayList<>();
+    private Dosen[] daftarDosen;
+    private Mahasiswa[] daftarMahasiswa;
+    private Matakuliah[] daftarMatakuliah;
+    int nd=0 , nmhs=0, nmatkul=0;
     
     public Aplikasi(){
         
-        daftarMahasiswa= new ArrayList();
-        daftarDosen=new ArrayList();
-        daftarMatakuliah=new ArrayList();
+        daftarMahasiswa= save.getMhs();
+        daftarDosen=save.getDosen();
+        daftarMatakuliah=save.getMatkul();
         save=new FileIO();
     }
     
     // DOSEN
-    public void addDosen(String nama,String email,String tanggalLahir, String nip){
-        daftarDosen.add(new Dosen(nama,email,tanggalLahir,nip));
+    public void addDosen(Dosen d){
+        if (nd<daftarDosen.length) {
+         daftarDosen[nd] = d;
+         nd++;
+        }
     }
     
-     public Dosen getDosenByNip(String nip){
-        for (Dosen d : daftarDosen) {
-            if (d.getNip().equals(nip)) {
-                return d;
-            }
-        }
+     public Dosen getDosenByNip(long nip){
+        Dosen d=null;
+        int a;
+        for (a=0; a< this.nd; a++) {
+            if (daftarDosen[a].getId() == nip) {
+                return daftarDosen[a];
+            }   
+        }        
         return null;
     }
      
      public Dosen getDosenByIndeks(int indeks){
-        return daftarDosen.stream()
-                .filter(e -> e.getIndeks().equals(indeks))
-                .findFirst().orElse(null);
+         return daftarDosen[indeks];
+        
     }
      
-      public void deleteDosen(String nip){
-        daftarDosen.remove(getDosenByNip(nip));
+      public void deleteDosen(long nip){
+          int a = 0;
+        for (a=0; a<daftarDosen.length; a++) {
+            if ( daftarDosen[a].getId() == IdDosen) {
+                break;
+            }
+        }
+        daftarDosen[a] = null;
+        for (int b=0;b<daftarDosen.length;b++) {
+            if (daftarDosen[b] == null) {
+                while(b<(daftarDosen.length-b)){
+                    daftarDosen[b] = daftarDosen[b+1];
+                    b++;
+                }
+            }
+        }
+        
     }
       
-    public int searchDosen(String nip){
-            return daftarDosen.indexOf(getDosenByNip(nip));
-    }
-    
+   
     
    //MAHASISWA
-    public void addMahasiswa(String nama,String email, String tanggalLahir, String nim){
-        daftarMahasiswa.add(new Mahasiswa(nama,email,tanggalLahir,nim));
+    public void addMahasiswa(Mahasiswa m) {
+        if (nmhs<daftarMahasiswa.length) {
+         daftarMahasiswa[nmhs] = m;
+         nmhs++;
+        }
     }
     
-    public Mahasiswa getMahasiswa(String nim){
-        return daftarMahasiswa.stream()
-                .filter(e -> e.getNim().equals(nim))
-                .findFirst().orElse(null);
+    public Mahasiswa getMahasiswabyNim(long nim) { 
+        Mahasiswa m=null;
+        int a;
+        for (a=0; a<daftarMahasiswa.length; a++) {
+            if (daftarMahasiswa[a].getId() == nim) {
+                m=daftarMahasiswa[a];
+                break;
+            }   
+        }        
+        return m;
     }
     
-    public void deleteMahasiswa(String nim){
-        daftarMahasiswa.remove(getMahasiswa(nim));
+    public void deleteMahasiswa(long nim) {
+        int a = 0;
+        for (a=0; a<daftarMahasiswa.length; a++) {
+            if ( daftarMahasiswa[a].getId() == nim) {
+                break;
+            }
+        }
+        daftarMahasiswa[a] = null;
+        for (int b=0;b<daftarMahasiswa.length;b++) {
+            if (daftarMahasiswa[b] == null) {
+                while(b<(daftarMahasiswa.length-b)){
+                    daftarMahasiswa[b] = daftarMahasiswa[b+1];
+                    b++;
+                }
+            }
+        }
     }
       
-    public int searchMahasiswa(String nim){
-            return daftarMahasiswa.indexOf(getMahasiswa(nim));
-    }
+    
     
     //Matakuliah
-    public void addMatakuliah(String namaMK,String kodeMK){
-        daftarMatakuliah.add(new Matakuliah(namaMK,kodeMK));
+    public void addMatakuliah(Matakuliah t) {
+        if (nmatkul<daftarMahasiswa.length) {
+         daftarMatakuliah[nmatkul] = t;
+         nmatkul++;
+        }
     }
     
-    public Matakuliah getMatakuliah(String kodeMK){
-        return daftarMatakuliah.stream()
-              .filter(e -> e.getKodeMK().equals(kodeMK))
-              .findFirst().orElse(null);
+    public Matakuliah getMatkul(String KodeMK) { 
+        int a = 0;
+        for (a=0; a<daftarMatakuliah.length; a++) {
+            if ( daftarMatakuliah[a].getKodeMK() == KodeMK) {
+                break;
+            }
+        }
+        return daftarMatakuliah[a];
     }
     
-    public int searchMK(String kodeMK){
-        return daftarMatakuliah.indexOf(getMatakuliah(kodeMK));
+   
+    public void deleteMatkul(String KodeMK) {
+        int a = 0;
+        for (a=0; a<daftarMatakuliah.length; a++) {
+            if ( daftarMatakuliah[a].getKodeMK() == KodeMK) {
+                break;
+            }
+        }
+        daftarMatakuliah[a] = null;
+        for (int b=0;b<daftarMatakuliah.length;b++) {
+            if (daftarMatakuliah[b] == null) {
+                while(b<(daftarMatakuliah.length-b)){
+                    daftarMatakuliah[b] = daftarMatakuliah[b+1];
+                    b++;
+                }
+            }
+        }
     }
-    public void deleteMK(String kodeMK){
-        daftarMatakuliah.remove(getMatakuliah(kodeMK));
-}
+
     
-    //KELAS
-    public void createKelas(Dosen d,String namaKelas){
-      d.createKelas(namaKelas);
-    }
-    
-    //TUGAS
-    public void createTugas(Kelas k, String namaTugas){
-        k.createTugas(namaTugas);
-    }
+   
   
     //DAFTAR
-    public String[] getDaftarDosen(){
-        List idD = daftarDosen.stream()
-                .map(e -> e.getNip()).collect(Collectors.toList());
-        return (String[]) idD.stream().toArray(size -> new String[size]); 
-    }
-    
-    
-    public String[] getDaftarMahasiswa(){
-        String s[]=new String[daftarMahasiswa.size()];
-          for (int i = 1; i < daftarMahasiswa.size(); i++) { 
-              s[i]=daftarMahasiswa.get(i).getNama();
-          } 
-          return s;  
-    }
-    
-    public String[] getDaftarKelas(){
-        Dosen d = null;
-        String s[]=new String[d.daftarKelas.size()];
-          for (int i = 1; i < d.daftarKelas.size(); i++) { 
-              s[i]=d.daftarKelas.get(i).getNamaKelas();
-          } 
-          return s;  
-    }
-    
-    
-    
-   
-  
-    
-  // for console view
-    public void viewListConsole(String[] list) {
-        Arrays.stream(list).forEach(System.out::println);
+    public Mahasiswa[] getDaftarMahasiswa() {
+        return daftarMahasiswa;
     }
 
-    public void loadDosen() throws FileNotFoundException, IOException {
-        try {
-            daftarDosen = (ArrayList<Dosen>) save.getObject("filename.dat");
-        } catch (FileNotFoundException ex) {
-            File f = new File("filename.dat");
-            f.createNewFile();
-        } catch (EOFException ex) {
-            daftarDosen = new ArrayList<>();
-        } catch (IOException | ClassNotFoundException ex) {
-            throw new IOException("error " + ex.getMessage());
-        }
+    public Matakuliah[] getDaftarMatakuliah() {
+        return daftarMatakuliah;
     }
 
-    public void saveDosen() throws FileNotFoundException, IOException {
-        try {
-            save.saveObject(daftarDosen, "filename.dat");
-        } catch (FileNotFoundException ex) {
-            throw new FileNotFoundException("file not found");
-        } catch (IOException ex) {
-            throw new IOException("error " + ex.getMessage());
-        }
+    public Dosen[] getDaftarDosen() {
+        return daftarDosen;
     }
 
+    public int getNdosen() {
+        return nd;
+    }
 
+    public int getNmhs() {
+        return nmhs;
+    }
+
+    public int getNmatkul() {
+        return nmatkul;
+    }
+    
+    
    
      
-    
-    
-    
-    
-    
 }
