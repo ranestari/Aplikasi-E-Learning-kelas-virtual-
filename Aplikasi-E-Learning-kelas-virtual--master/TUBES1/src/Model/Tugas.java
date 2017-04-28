@@ -7,23 +7,20 @@ package Model;
 
 /**
  *
- * @author Ranestari Sastriani
+ * @author Nindia Cahyaning Putri
+ * 1301154567
+ * IF3907
  */
 public class Tugas {
     
     private String namaTugas;
-    private static int count=1;
-    private final String indeks;
-   
-    
-    
-    
-    public Tugas(String namaTugas){
-        this.namaTugas=namaTugas;
-        indeks="Tugas-"+(count++);
-        
-    }
+    private String deskripsi;
 
+    public Tugas(String namaTugas, String deskripsi) {
+        this.namaTugas = namaTugas;
+        this.deskripsi = deskripsi;
+    }
+   
     public String getNamaTugas() {
         return namaTugas;
     }
@@ -31,9 +28,13 @@ public class Tugas {
     public void setNamaTugas(String namaTugas) {
         this.namaTugas = namaTugas;
     }  
-    
-    @Override
-    public String toString(){
-        return namaTugas;
+
+    public String getDeskripsi() {
+        return deskripsi;
     }
+
+    public void setDeskripsi(String deskripsi) {
+        this.deskripsi = deskripsi;
+    }
+    
 }
