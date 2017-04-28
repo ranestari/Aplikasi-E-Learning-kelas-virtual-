@@ -17,6 +17,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -24,16 +25,19 @@ import java.util.Date;
  */
 public class Aplikasi {
     
-    private FileIO save= new FileIO();
+    private FileIO save;
     private List<Mahasiswa> daftarMahasiswa= new ArrayList<>();
     private List<Dosen> daftarDosen = new ArrayList<>();
     private List<Matakuliah> daftarMatakuliah = new ArrayList<>();
     
     public Aplikasi(){
+        
         daftarMahasiswa= new ArrayList();
         daftarDosen=new ArrayList();
         daftarMatakuliah=new ArrayList();
+        save=new FileIO();
     }
+    
     // DOSEN
     public void addDosen(String nama,String email,String tanggalLahir, String nip){
         daftarDosen.add(new Dosen(nama,email,tanggalLahir,nip));
@@ -61,6 +65,8 @@ public class Aplikasi {
     public int searchDosen(String nip){
             return daftarDosen.indexOf(getDosenByNip(nip));
     }
+    
+    
    //MAHASISWA
     public void addMahasiswa(String nama,String email, String tanggalLahir, String nim){
         daftarMahasiswa.add(new Mahasiswa(nama,email,tanggalLahir,nim));
@@ -80,7 +86,7 @@ public class Aplikasi {
             return daftarMahasiswa.indexOf(getMahasiswa(nim));
     }
     
-    
+    //Matakuliah
     public void addMatakuliah(String namaMK,String kodeMK){
         daftarMatakuliah.add(new Matakuliah(namaMK,kodeMK));
     }
@@ -98,22 +104,21 @@ public class Aplikasi {
         daftarMatakuliah.remove(getMatakuliah(kodeMK));
 }
     
+    //KELAS
     public void createKelas(Dosen d,String namaKelas){
       d.createKelas(namaKelas);
     }
     
-    
+    //TUGAS
     public void createTugas(Kelas k, String namaTugas){
         k.createTugas(namaTugas);
     }
   
-    
+    //DAFTAR
     public String[] getDaftarDosen(){
-        String s[]=new String[daftarDosen.size()];
-          for (int i = 1; i < daftarDosen.size(); i++) { 
-              s[i]=daftarDosen.get(i).getNama();
-          } 
-          return s;  
+        List idD = daftarDosen.stream()
+                .map(e -> e.getNip()).collect(Collectors.toList());
+        return (String[]) idD.stream().toArray(size -> new String[size]); 
     }
     
     
@@ -157,7 +162,7 @@ public class Aplikasi {
         }
     }
 
-    public void saveEmployee() throws FileNotFoundException, IOException {
+    public void saveDosen() throws FileNotFoundException, IOException {
         try {
             save.saveObject(daftarDosen, "filename.dat");
         } catch (FileNotFoundException ex) {

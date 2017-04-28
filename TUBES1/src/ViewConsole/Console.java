@@ -43,6 +43,8 @@ public class Console {
         
     }
     
+    
+    // MENU DOSEN
     public void menuDosen() {
         int pil = 0;
         do {            
@@ -116,7 +118,7 @@ public class Console {
     
     
     
-    
+    //MENU MAHASISWA
     public void menuMahasiswa() {
         int pil = 0;
         do {            
@@ -135,10 +137,10 @@ public class Console {
                 switch (pil) {
                     case 1:
                         System.out.println("--- ADD MAHASISWA ---");
-                        System.out.print(" - Nama           : "); String nama = sStr.nextLine();
-                        System.out.print(" - Email          : "); String email = sStr.nextLine();
-                        System.out.print(" - Tanggal Lahir  : "); String tanggalLahir = sStr.nextLine();
-                        System.out.print(" - Nim            : "); String nim = sStr.nextLine();
+                        System.out.print(" Nama:          : "); String nama = sStr.nextLine();
+                        System.out.print(" Email          : "); String email = sStr.nextLine();
+                        System.out.print(" Tanggal Lahir  : "); String tanggalLahir = sStr.nextLine();
+                        System.out.print(" Nim            : "); String nim = sStr.nextLine();
                         model.addMahasiswa (nama,email, tanggalLahir, nim);
                         break;
                     case 2:
@@ -168,6 +170,52 @@ public class Console {
         } while (pil != 0);
     }
     
+    //MENU ADMIN
+    
+    //MENU MAHASISWA
+    public void menuAdmin() {
+        int pil = 0;
+        do {            
+            try {
+                System.out.println("------ MENU ADMIN -------");
+                System.out.println(" 1. ADD MATAKULIAH       ");
+                System.out.println(" 2. REMOVE MATAKULIAH         ");
+                System.out.println(" 3. ADD MATAKULIAH KE KELAS   ");
+                System.out.println(" 0. MENU UTAMA                 ");
+                System.out.println("-----------------------------");
+                System.out.print("- Pilih menu : ");
+                pil = inputInteger();
+                switch (pil) {
+                    case 1:
+                        System.out.println("--- ADD MATAKULIAH ---");
+                        System.out.print(" - Nama Matkul          : "); String namaMK = sStr.nextLine();
+                        System.out.print(" - Kode Matkul         : "); String kodeMK = sStr.nextLine();
+                        model.addMatakuliah(namaMK,kodeMK);
+                        break;
+                    case 2:
+                        System.out.println("--- HAPUS MAHASISWA ---");
+                        System.out.print(" Kode MK "); kodeMK = sStr.nextLine();
+                        model.deleteMK(kodeMK);
+                        break;    
+                    case 3:
+                        System.out.println("--- SET MATAKULIAH ---");
+                        System.out.print(" - KODE MK : "); kodeMK = sStr.nextLine();
+                        ///belum
+                        break;
+                  
+                }
+                
+            } catch (Exception e) {
+                System.out.println("error : " + e.getMessage());
+            } finally {
+                sInt = new Scanner(System.in);
+                sStr = new Scanner(System.in);
+            }
+        } while (pil != 0);
+    }
+    
+    
+    //MENU UTAMA
     public void mainMenu() {
         int pil = 0;
         do {            
@@ -175,6 +223,7 @@ public class Console {
                 System.out.println("------ Menu Utama -------");
                 System.out.println("- 1. MENU DOSEN   ");
                 System.out.println("- 2. MENU MAHASISWA      ");
+                System.out.println("-3. MENU ADMIN     ");
                 System.out.println("- 0. Exit                ");
                 System.out.println("-------------------------");
                 System.out.print("- Pilih menu : ");
@@ -186,6 +235,10 @@ public class Console {
                     case 2:
                         menuMahasiswa();
                         break;
+                    case 3:
+                        menuAdmin();
+                        break;
+                    
                     
                 }
                 
@@ -199,7 +252,7 @@ public class Console {
         } while (pil != 0); 
     }
     
-    
+  
     
     
 }

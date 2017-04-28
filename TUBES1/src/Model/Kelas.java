@@ -38,11 +38,11 @@ public class Kelas {
     }
     
     public void setMataKuliah (Matakuliah m){
-        matakuliah=m;
+        this.matakuliah=m;
     }
     
-    public String getMatakuliah(Matakuliah m){
-        return m.getNamaMK()+"("+m.getKodeMK()+")";
+    public Matakuliah getMatakuliah(){
+        return matakuliah;
     }
     
     public void addMahasiswa(Mahasiswa M) {
@@ -59,7 +59,9 @@ public class Kelas {
     
     @Override
     public String toString(){
-        return "Kelas "+namaKelas;
+        return "Kelas :"+namaKelas+"\n"
+                +"Mata Kuliah :"+getMatakuliah().getNamaMK()+"\n"
+                +"Kode Mata Kuliah: "+getMatakuliah().getKodeMK();
     }
     
 }

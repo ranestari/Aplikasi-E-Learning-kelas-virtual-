@@ -13,49 +13,20 @@ import java.util.Date;
  */
 public class Mahasiswa extends Orang {
     
-    private  String nim;
-    private static int count=1;
-    private final String indeks;
-
-
-  
     
-    public Mahasiswa(String nama,String email, String tanggalLahir, String nim){
-        super(nama,email,tanggalLahir);
-        this.nim=nim;
-        indeks="mhs-"+(count++);
+    public Mahasiswa(String nama, String email, long nim){
+        super(nama,email,nim);
     }
+       
     
-    public Mahasiswa (String nama){
-        super(nama);
-        indeks="mhs-"+(count++);
-    }
-    
-    public Mahasiswa(String nama,String nim) {
-        super(nama);
-        this.nim=nim;
-        indeks="mhs-"+(count++);
-
-    }
-
-    public String getIndeks() {
-        return indeks;
-    }
-    
-
-    public String getNim() {
-        return nim;
-    }
-
-    public void setNim(String nim) {
-        this.nim = nim;
+    public void display(){
+        System.out.println("Nama Mahasiswa: "+super.getNama());
+        System.out.println("Nim Mahasiswa:"+super.getId());
     }
     
        @Override
     public String toString() {
-        return  "\n"+indeks+
-                super.toString()
-                +"\nnim: "+nim+"\n";
+        return  "Nama : " + super.getNama();
     }
 
     
