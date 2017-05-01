@@ -26,7 +26,8 @@ public class Kelas implements Serializable {
     public Kelas(String namaKelas, Mahasiswa m, Matakuliah mk){
         
         this.namaKelas=namaKelas;
-        daftarMahasiswa=new ArrayList();
+        daftarMahasiswa=new ArrayList<Mahasiswa>();
+        daftarTugas=new ArrayList<Tugas>();
         this.matakuliah=mk;
         idKelas="Kelas-"+(countK++);
         
@@ -113,7 +114,7 @@ public class Kelas implements Serializable {
         return "idKelas                 : " + getIdKelas() + "\n" +
                "Nama Kelas              : " + getNamaKelas() + "\n" +
                "Matakuliah              : " + matakuliah + "\n" +
-               "Daftar Mahasiswa        : " + getDaftarMahasiswa()+ "\n"+
+               "Daftar Mahasiswa        : " + daftarMahasiswa+ "\n"+
                "Daftar Tugas            : " + daftarTugas + "\n";
                
     }

@@ -119,7 +119,10 @@ public class Aplikasi {
     
     }
     
-    
+    // TUGAS
+    public void createTugas(Kelas k,String namaTugas){
+        k.createTugas(namaTugas);
+    } 
     
 
    

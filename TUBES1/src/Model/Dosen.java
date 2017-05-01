@@ -24,9 +24,11 @@ public class Dosen extends Orang implements Serializable{
     
     
     public Dosen(String nama,String email, String  tanggalLahir, String nip){
+        
         super(nama,email,tanggalLahir);
         this.nip=nip;
         idDosen="Dsn-"+(countD++);
+        daftarKelas=new ArrayList<Kelas>();
     }
 
     public static int getCountD() {
@@ -82,7 +84,7 @@ public class Dosen extends Orang implements Serializable{
                 "Nama           : " + getNama()  +"\n" + 
                 "Email          : " + getEmail() + "\n" +
                 "Tanggal Lahir  : " + getTanggalLahir()+ "\n" +
-                "daftar Kelas   : "+daftarKelas;
+                "daftar Kelas   : " +daftarKelas+"\n" ;
     }
     
     

@@ -10,6 +10,7 @@ import Model.Dosen;
 import Model.Kelas;
 import Model.Mahasiswa;
 import Model.Matakuliah;
+import Model.Tugas;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -99,8 +100,8 @@ public class Console {
                         System.out.println("--- CREATE KELAS ---");
                         System.out.print(" - Nama Kelas             : "); String namaKelas = sStr.nextLine();
                         System.out.print(" - Nip Dosen              : "); nip= sStr.nextLine();
-                        System.out.print(" - nim Mahasiswa          : "); String nim= sStr.nextLine();
                         System.out.print(" - kode MK                : ");String  kodeMK= sStr.nextLine();
+                        System.out.print(" - nim Mahasiswa          : "); String nim= sStr.nextLine();
                         d = model.getDosenByNip(nip);
                         Mahasiswa m = model.getMahasiswa(nim);
                         Matakuliah mk =model.getMatakuliah(kodeMK);
@@ -112,8 +113,8 @@ public class Console {
                         System.out.println("--- CREATE TUGAS ---");
                         System.out.print(" - Nama tugas             : "); String namaTugas = sStr.nextLine();
                         System.out.print(" -nama Kelas              : "); namaKelas = sStr.nextLine();
-                        System.out.print(" - Nip Dosen              : "); nip= sStr.nextLine();
-                        model.getDosenByNip(nip).getKelas(namaKelas);
+                        System.out.print(" -nip Dosen             : "); nip = sStr.nextLine();
+                        
                         System.out.println("Tugas Berhasil ditambah");
                         break;
                     case 0:
@@ -249,9 +250,9 @@ public class Console {
                 pil = inputInteger();
                 switch (pil){
                     case 1:
-                        model.loadDosen();
+                       // model.loadDosen();
                         menuDosen();
-                        model.saveDosen();
+                      // model.saveDosen();
                         break;
                     case 2:
                         model.loadMahasiswa();
