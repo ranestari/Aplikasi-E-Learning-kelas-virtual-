@@ -142,8 +142,7 @@ public class Console {
                 System.out.println(" 2. REMOVE MAHASISWA         ");
                 System.out.println(" 3. DAFTAR MAHASISWA   ");
                 System.out.println(" 4. SEARCH MAHASISWA    ");
-                System.out.println(" 6. AMBIL KELAS");
-                System.out.println(" 7. LIHAT TUGAS");
+                System.out.println(" 5. AMBIL KELAS");
                 System.out.println(" 0. MENU UTAMA                 ");
                 System.out.println("-----------------------------");
                 System.out.print("- Pilih menu : ");
@@ -156,7 +155,7 @@ public class Console {
                         System.out.print(" Tanggal Lahir  : "); String tanggalLahir = sStr.nextLine();
                         System.out.print(" Nim            : "); String nim = sStr.nextLine();
                         System.out.print(" Semester       : "); int semester = inputInteger();
-                        model.createMahasiswa (nama,email, tanggalLahir,semester);
+                        model.createMahasiswa (nama,email, tanggalLahir,nim,semester);
                         break;
                     case 2:
                         System.out.println("--- HAPUS MAHASISWA ---");
@@ -172,6 +171,15 @@ public class Console {
                         System.out.print(" - Masukkan nim : "); nim = sStr.nextLine();
                         Mahasiswa m = model.getMahasiswa(nim);
                         System.out.println(m);
+                        break;
+                    case 5:
+                        System.out.println("--- AMBIL KELAS ---");
+                        System.out.print(" - nama Kelas  : "); String namaKelas = sStr.nextLine();
+                        System.out.println("nim :"); nim= sStr.nextLine();
+                        System.out.println("nip :"); String nip= sStr.nextLine();
+                        Dosen d= model.getDosenByNip(nip);
+                        //Kelas k = model.getKelas(d, namaKelas); 
+                        //model.addMahasiswa(m, k);
                         break;
                   
                 }
@@ -250,19 +258,19 @@ public class Console {
                 pil = inputInteger();
                 switch (pil){
                     case 1:
-                       // model.loadDosen();
+                      //model.loadDosen();
                         menuDosen();
-                      // model.saveDosen();
+                      //model.saveDosen();
                         break;
                     case 2:
-                        model.loadMahasiswa();
+                      //model.loadMahasiswa();
                         menuMahasiswa();
-                        model.saveMahasiswa();
+                      //model.saveMahasiswa();
                         break;
                     case 3:
-                        model.loadMatakuliah();
+                     // model.loadMatakuliah();
                         menuAdmin();
-                        model.saveMatakuliah();
+                      model.saveMatakuliah();
                         break;
                     
                     

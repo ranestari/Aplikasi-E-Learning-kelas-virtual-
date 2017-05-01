@@ -72,8 +72,8 @@ public class Aplikasi {
   
     
    //MAHASISWA
-    public void createMahasiswa(String nama,String email, String tanggalLahir, int semester){
-        daftarMahasiswa.add(new Mahasiswa(nama,email,tanggalLahir,semester));
+    public void createMahasiswa(String nama,String email, String tanggalLahir,String nim, int semester){
+        daftarMahasiswa.add(new Mahasiswa(nama,email,tanggalLahir,nim,semester));
     }
     
     public Mahasiswa getMahasiswa(String nim){
@@ -116,7 +116,19 @@ public class Aplikasi {
     public void createKelas(Dosen d,String namaKelas, Mahasiswa m, Matakuliah mk){
         
         d.createKelas(namaKelas, m, mk);
+        
     
+    }
+    
+    
+    public Kelas getKelas (Dosen d, Kelas k){
+        return d.daftarKelas.stream()
+              .filter(e -> e.getNamaKelas().equals(k))
+              .findFirst().orElse(null);
+    }
+    
+    public void addMahasiswa(Mahasiswa m,Kelas k) {
+        k.addMahasiswa(m);
     }
     
     // TUGAS

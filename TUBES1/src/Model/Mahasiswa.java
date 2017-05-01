@@ -21,7 +21,7 @@ public class Mahasiswa extends Orang implements Serializable {
     
     
     
-    public Mahasiswa(String nama,String email, String tanggalLahir, int semester){
+    public Mahasiswa(String nama,String email, String tanggalLahir, String nim,int semester){
          super(nama,email,tanggalLahir);
          idMahasiswa="mhs-"+(countM++);
          this.nim=nim;
@@ -44,7 +44,7 @@ public class Mahasiswa extends Orang implements Serializable {
     
        @Override
     public String toString() {
-        return  "NIM            : " + nim + "\n" +
+        return  "NIM            : " + getNim() + "\n" +
                 "id             :"+idMahasiswa+"\n"+
                 "Nama           : " + getNama() + "\n" + 
                 "Email          : " + getEmail() + "\n" +
