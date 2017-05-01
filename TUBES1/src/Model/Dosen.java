@@ -5,49 +5,38 @@
  */
 package Model;
 
+import java.io.Serializable;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  *
  * @author Ranestari Sastriani
  */
-public class Dosen extends Orang{
+public class Dosen extends Orang implements Serializable{
     
-    private static int count=1;
-    private String nip;
+    private static int countD=1;
+    private final String idDosen;
     ArrayList<Kelas> daftarKelas;
-    private final String indeks;
+    private String nip;
     
     
     
-  
     
     public Dosen(String nama,String email, String  tanggalLahir, String nip){
         super(nama,email,tanggalLahir);
         this.nip=nip;
-        indeks="Dsn-"+(count++);
-    }
-    
-    
-    public Dosen (String nama){
-        super(nama);
-        daftarKelas=new ArrayList(); 
-        indeks="Dsn-"+(count++);
-    }
-    
-    public Dosen(String nama, String nip){
-        super(nama);
-        this.nip=nip;
-        indeks="Dsn-"+(count++);
-        daftarKelas= new ArrayList();
-        
+        idDosen="Dsn-"+(countD++);
     }
 
-    public String getIndeks() {
-        return indeks;
+    public static int getCountD() {
+        return countD;
     }
     
     
+    public String getIdDosen() {
+        return idDosen;
+    }
 
     public String getNip() {
         return nip;
@@ -56,30 +45,44 @@ public class Dosen extends Orang{
     public void setNip(String nip) {
         this.nip = nip;
     }
+    
+    
 
     
-    public void createKelas(String namaKelas){
-        daftarKelas.add(new Kelas(namaKelas));
+    public void createKelas(String namaKelas, Mahasiswa m, Matakuliah mk){
+        
+        daftarKelas.add(new Kelas(namaKelas, m, mk));
+        
+        
+    }  
     
-    }
-    
-    public Kelas getKelas(int i){
-        return daftarKelas.get(i);
-    }
+     public Kelas getKelas(String idKelas){
+        return daftarKelas.stream()
+              .filter(e -> e.getIdKelas().equals(idKelas))
+              .findFirst().orElse(null);
+   }
 
    
-    public void removeKelas(int n){
-        daftarKelas.remove(n);
-        
+     public void removeKelas(String idKelas){
+        for (Kelas k : daftarKelas){
+            if (k.getIdKelas().equals(idKelas)){
+                daftarKelas.remove(k);
+            }
+        }
+    }
+     
+    public List<Kelas> getDaftarKelas(String idKelas){
+        return daftarKelas;
     }
     
     @Override
     public String toString(){
-        String s = "Dosen: "+super.toString();
-        for (Kelas k : daftarKelas){
-            s += "\n" + k;
-        }
-        return s;
+        return  "NIP            : " + nip + "\n" +
+                "Id             : " + getIdDosen()  +"\n" + 
+                "Nama           : " + getNama()  +"\n" + 
+                "Email          : " + getEmail() + "\n" +
+                "Tanggal Lahir  : " + getTanggalLahir()+ "\n" +
+                "daftar Kelas   : "+daftarKelas;
     }
     
     

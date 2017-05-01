@@ -13,14 +13,23 @@ import java.io.Serializable;
  */
 public class Matakuliah implements Serializable{
     
+    private static int  countMK=1;
     private String namaMK;
+    private final String idMK;
     private String kodeMK;
     
     
-    public Matakuliah(String namaMK, String kodeMK){
+    public Matakuliah(String namaMK,String kodeMK){
         this.namaMK=namaMK;
         this.kodeMK=kodeMK;
+        idMK="MK-"+(countMK++);
     }
+
+    public String getIdMK() {
+        return idMK;
+    }
+    
+    
 
     public String getNamaMK() {
         return namaMK;
@@ -34,13 +43,11 @@ public class Matakuliah implements Serializable{
         return kodeMK;
     }
 
-    public void setKodeMK(String kodeMK) {
-        this.kodeMK = kodeMK;
-    }
     
     @Override
     public String toString(){
-        return "Mata Kuliah "+namaMK+"("+kodeMK+")";
+        return "Mata Kuliah : "+getNamaMK()+"("+getIdMK()+")" +"\n"+
+                "kode MK    :"+getKodeMK();
     }
     
     

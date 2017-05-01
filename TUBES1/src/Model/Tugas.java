@@ -5,18 +5,22 @@
  */
 package Model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Ranestari Sastriani
  */
-public class Tugas {
+public class Tugas implements Serializable {
     
      private String namaTugas;
-    private String deskripsi;
+    private static int countT=1;
+    private final String idTugas;
 
-    public Tugas(String namaTugas, String deskripsi) {
-        this.namaTugas = namaTugas;
-        this.deskripsi = deskripsi;
+    public Tugas(String namaTugas){
+        this.namaTugas=namaTugas;
+        idTugas="Tugas-"+(countT++);
+        
     }
    
     public String getNamaTugas() {
@@ -27,11 +31,14 @@ public class Tugas {
         this.namaTugas = namaTugas;
     }  
 
-    public String getDeskripsi() {
-        return deskripsi;
+    public String getIdTugas() {
+        return idTugas;
     }
+    
+    
 
-    public void setDeskripsi(String deskripsi) {
-        this.deskripsi = deskripsi;
-}
+   @Override
+    public String toString(){
+        return "Tugas  : " +getNamaTugas()+getIdTugas();
+    }
 }

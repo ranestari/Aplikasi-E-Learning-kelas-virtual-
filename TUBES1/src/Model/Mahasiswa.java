@@ -5,28 +5,50 @@
  */
 package Model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author Ranestari Sastriani
  */
-public class Mahasiswa extends Orang {
+public class Mahasiswa extends Orang implements Serializable {
     
     
-    public Mahasiswa(String nama, String email, long nim){
-        super(nama,email,nim);
-    }
+    private static int countM=1;
+    private final String idMahasiswa;
+    private String nim;
+    
+    
+    
+    public Mahasiswa(String nama,String email, String tanggalLahir, int semester){
+         super(nama,email,tanggalLahir);
+         idMahasiswa="mhs-"+(countM++);
+         this.nim=nim;
+     }
        
     
-    public void display(){
-        System.out.println("Nama Mahasiswa: "+super.getNama());
-        System.out.println("Nim Mahasiswa:"+super.getId());
+    public String getIdMahasiswa() {
+        return idMahasiswa;
     }
+
+    public String getNim() {
+        return nim;
+    }
+
+    public void setNim(String Nim) {
+        this.nim=nim;
+    }
+
+    
     
        @Override
     public String toString() {
-        return  "Nama : " + super.getNama();
+        return  "NIM            : " + nim + "\n" +
+                "id             :"+idMahasiswa+"\n"+
+                "Nama           : " + getNama() + "\n" + 
+                "Email          : " + getEmail() + "\n" +
+                "Tanggal Lahir  : " + getTanggalLahir();  
     }
 
     

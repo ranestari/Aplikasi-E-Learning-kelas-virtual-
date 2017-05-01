@@ -5,22 +5,21 @@
  */
 package Model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author Ranestari Sastriani
  */
-public abstract class Orang {
+public abstract class Orang  implements Serializable{
     
    
     private String nama;
     private String email;
     private String tanggalLahir;
     
-    public Orang(String nama){
-    this.nama=nama;
-    }
+    
     
     public Orang(String nama, String email, String tanggalLahir){
         this.nama=nama;
@@ -55,12 +54,5 @@ public abstract class Orang {
     }
     
     
-    @Override
-    public  String toString(){
-        return
-                  "\nnama: " + nama 
-                + "\nemail: " + email 
-                + "\ntanggal Lahir: " + tanggalLahir ;
-    }
     
 }

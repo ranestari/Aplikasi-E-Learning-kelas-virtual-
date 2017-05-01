@@ -5,117 +5,116 @@
  */
 package Model;
 
+import java.io.Serializable;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  *
  * @author Ranestari Sastriani
  */
-public class Kelas {
+public class Kelas implements Serializable {
     
-      private Mahasiswa[] anggota = new Mahasiswa [25];
-    private int jmlMahasiswa = 0;
-    private String namaKelas;
-    private Tugas[] tugas;
-    private int jumTugas = 0;
-    private Matakuliah Matakuliah;
+    private static int countK =1;
+    private final String idKelas;
+    private  String namaKelas;
+    private Matakuliah matakuliah;
+    ArrayList<Mahasiswa> daftarMahasiswa;
+    ArrayList<Tugas> daftarTugas;
     
-
-     public Kelas(String namaKelas, int maxjumTugas) {
-        this.namaKelas = namaKelas;
-        tugas=new Tugas[maxjumTugas];
+    
+    public Kelas(String namaKelas, Mahasiswa m, Matakuliah mk){
+        
+        this.namaKelas=namaKelas;
+        daftarMahasiswa=new ArrayList();
+        this.matakuliah=mk;
+        idKelas="Kelas-"+(countK++);
+        
+    }
+    
+    public String getIdKelas() {
+        return idKelas;
     }
     
     
-    public void setMataKuliah (Matakuliah m){
-        this.Matakuliah=m;
+    public String getNamaKelas() {
+        return namaKelas;
+    }
+
+    public void setNamaKelas(String namaKelas) {
+        this.namaKelas = namaKelas;
+    }
+    
+    public void setMataKuliah (Matakuliah matakuliah){
+        this.matakuliah=matakuliah;
     }
     
     public Matakuliah getMatakuliah(){
-        return Matakuliah;
+        return matakuliah;
+        
     }
     
-    public void addMahasiswa(Mahasiswa m) {
-        if (jmlMahasiswa < anggota.length){//anggota [jmlMahasiswa++] = m
-            anggota[jmlMahasiswa]= m;
-            jmlMahasiswa++;
-        }
+    public void addMahasiswa(Mahasiswa M) {
+        daftarMahasiswa.add(M);
     }
     
-    public void removeMahasiswa(long IdMhs){
-        int a= 0;
-        for(a=0; a<anggota.length; a++){
-            if(anggota[a].getId() == IdMhs){
-                break;
+    public Mahasiswa getMahasiswa(String nim){
+        for (Mahasiswa m : daftarMahasiswa){
+            if (m.getNim().equals(nim)){
+                return m;
             }
         }
-        anggota[a]=null;
-        for (int b=0; b<anggota.length; b++){
-            if(anggota[b] == null){
-                while (b<(anggota.length-b)) {
-                    anggota[b] = anggota[b+1];
-                    b++;
-                }
+        return null;
+    }
+    
+    public void removeMahasiswa(String nim){
+        for (Mahasiswa m : daftarMahasiswa){
+            if (m.getNim().equals(nim)){
+                daftarMahasiswa.remove(m);
             }
+        }  
+    }
+    
+    public String getDaftarMahasiswa() {
+        String s = "";
+        for (int i = 0; i < daftarMahasiswa.size(); i++) {
+            s += daftarMahasiswa.get(i).getNim()+ "\n";
         }
+        return s;
     }
 
-    public Mahasiswa getMahasiswabyIndex(int index){
-        return anggota[index];
+    
+    // Tugas
+    public void createTugas(String namaTugas){
+        daftarTugas.add(new Tugas(namaTugas));
+    }  
+    
+     public Tugas getTugas(String idTugas){
+        return daftarTugas.stream()
+              .filter(e -> e.getIdTugas().equals(idTugas))
+              .findFirst().orElse(null);
+    }
+     
+     
+    public void removeTugas(String idTugas){
+        for (Tugas t : daftarTugas){
+            if (t.getIdTugas().equals(idTugas)){
+                daftarTugas.remove(t);
+            }
+        }  
     }
     
-    public Mahasiswa getMahasiswabyNim(int id){
-        return anggota[id];
+    public List<Tugas> getDaftarTugas(String idTugas){
+        return daftarTugas;
     }
     
-    public Tugas getTugas (int index){
-        return tugas[index];
+    @Override
+    public String toString(){
+        return "idKelas                 : " + getIdKelas() + "\n" +
+               "Nama Kelas              : " + getNamaKelas() + "\n" +
+               "Matakuliah              : " + matakuliah + "\n" +
+               "Daftar Mahasiswa        : " + getDaftarMahasiswa()+ "\n"+
+               "Daftar Tugas            : " + daftarTugas + "\n";
+               
     }
-    
-    public String getNamaKelas(){
-        return namaKelas;
-    }
-    
-    public void createTugas(String namaTugas, String deskripsi){
-        if(jumTugas< tugas.length){
-            tugas[jumTugas] = new Tugas(namaTugas, deskripsi);
-            jumTugas++;
-        }
-    }
-    
-    public int getJmlMahasiswa(){
-        return jmlMahasiswa;
-    }
-    
-    public int getJumTugas() {
-        return jumTugas;
-        
-    }
-    
-    public void displayKelas(){
-        System.out.println("MATAKULIAH");
-        System.out.println("Kelas: "+getNamaKelas());
-        System.out.println("Nama Matakuliah: "+getMatakuliah().getNamaMK());
-        System.out.println("Kode Matakuliah: "+getMatakuliah().getKodeMK());
-        System.out.println("");
-        System.out.println("");
-        
-        System.out.println("DAFTAR TUGAS");
-        for (int i=0; i<jumTugas; i++){
-            System.out.println("Tugas ke- " +(i+1));
-            System.out.println("Nama tugas: "+getTugas(i).getNamaTugas());
-            System.out.println("Deskripsi Tugas: "+getTugas(i).getDeskripsi());
-            System.out.println("");
-            System.out.println("");
-        }
-        
-        System.out.println("DAFTAR MAHASISWA");
-        for (int j=0; j<jmlMahasiswa; j++){
-            System.out.println("Mahasiswa ke- "+(j+1));
-            System.out.println("Nama mahasiswa: "+getMahasiswabyIndex(j).getNama());
-            System.out.println("NIM mahasiswa: "+getMahasiswabyIndex(j).getId());
-            System.out.println("");
-            System.out.println("");    
-        }
-}
 }

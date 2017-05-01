@@ -6,9 +6,7 @@
 package Driver;
 
 import Model.Aplikasi;
-import Model.Mahasiswa;
 import ViewConsole.Console;
-import java.util.*;
 
 /**
  *
@@ -16,7 +14,7 @@ import java.util.*;
  */
 public class Driver {
     public static void main(String[] args) {
-        Aplikasi app = null;
+        Aplikasi app =new Aplikasi();
         Console view = new Console(app);
         view.mainMenu();
         
